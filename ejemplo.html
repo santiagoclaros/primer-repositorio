@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Guía de Observación Astronómica — Noche de Estrellas</title>
+  <meta name="description" content="Guía compacta y didáctica para iniciarse en la observación de estrellas: equipo, preparación, consejos y recursos prácticos." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f1724;
+      --muted:#9aa4b2;
+      --accent:#7dd3fc;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+      --gap:20px;
+      --fg: #e6eef8;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,0.06), transparent),
+                  linear-gradient(180deg, #02030a 0%, #071026 60%);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{width:100%;max-width:var(--max-width);}
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--fg);
+    }
+    .logo{
+      width:52px;height:52px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#6366f1);
+      display:grid;place-items:center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6), inset 0 -6px 12px rgba(255,255,255,0.02);
+      font-weight:700;
+      color:#01203a;
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{
+      color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px;
+    }
+    nav a:hover{background:var(--glass);color:var(--fg)}
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns:1fr 360px;
+      gap:var(--gap);
+      align-items:center;
+      margin-bottom:28px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .hero-left h1{
+      margin:0 0 12px 0;
+      font-size:28px;
+      line-height:1.05;
+      letter-spacing:-0.4px;
+    }
+    .hero-left p{margin:0 0 16px 0;color:var(--muted)}
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{
+      background:linear-gradient(90deg,var(--accent),#8b5cf6);
+      color:#01203a;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;
+      box-shadow: 0 8px 20px rgba(125,211,252,0.08);
+    }
+    .btn.ghost{background:transparent;color:var(--fg);border:1px solid rgba(255,255,255,0.04)}
+
+    /* QUICK INFO */
+    .quick{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      font-size:14px;
+      color:var(--muted);
+    }
+    .stat{
+      display:flex;align-items:center;gap:10px;
+    }
+    .stat svg{opacity:0.9}
+
+    /* SECTIONS */
+    section{margin-bottom:22px}
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:var(--gap);
+    }
+    .feature h3{margin:0 0 8px 0}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Checklist & tips */
+    .checklist{display:flex;flex-direction:column;gap:10px}
+    .check{
+      display:flex;gap:12px;align-items:flex-start;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:12px;border-radius:10px;
+    }
+    .check svg{flex:0 0 28px}
+
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .tile{padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));min-height:120px;display:flex;flex-direction:column;gap:8px}
+    .tile h4{margin:0;font-size:16px}
+    .tile p{margin:0;font-size:13px;color:var(--muted)}
+
+    /* Footer */
+    footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.02)}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr; }
+      .grid-3{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      body{padding:18px}
+      .grid-3{grid-template-columns:1fr}
+      .gallery{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    /* Accessibility focus */
+    a:focus, button:focus, input:focus, textarea:focus {outline:2px dashed rgba(125,211,252,0.32);outline-offset:3px}
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main">
+    <header>
+      <a class="brand" href="#" aria-label="Noche de Estrellas - Inicio">
+        <div class="logo" aria-hidden="true">★</div>
+        <div>
+          <div style="font-weight:700">Noche de Estrellas</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Guía breve de observación astronómica</div>
+        </div>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="#que">¿Qué observar?</a>
+        <a href="#equipo">Equipo</a>
+        <a href="#tips">Consejos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="card hero-left" aria-labelledby="hero-title">
+        <h1 id="hero-title">Introducción a la observación astronómica</h1>
+        <p>Esta página ofrece una guía práctica y concisa para iniciar la observación del cielo nocturno: qué ver, qué equipo conviene, y cómo planificar salidas seguras y productivas.</p>
+        <div class="cta-row" role="group" aria-label="Acciones principales">
+          <button class="btn" onclick="document.getElementById('tips').scrollIntoView({behavior:'smooth'})">Ver consejos rápidos</button>
+          <button class="btn ghost" onclick="document.getElementById('equipo').scrollIntoView({behavior:'smooth'})">Ver equipo recomendado</button>
+        </div>
+        <div style="margin-top:14px;color:var(--muted);font-size:13px">
+          <strong>Nota:</strong> Esta guía es de carácter instructivo y no sustituye formación especializada.
+        </div>
+      </div>
+
+      <!-- Quick card -->
+      <aside class="card quick" aria-labelledby="quick-title">
+        <div id="quick-title" style="font-weight:700;margin-bottom:8px">Información rápida</div>
+        <div class="stat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong id="currentDate">Fecha:</strong><div style="font-size:13px;color:var(--muted)">Hora local y condiciones</div></div></div>
+        <div class="stat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M21 12c0 1-1 4-9 8-8-4-9-7-9-8 0-6 6-10 9-10s9 4 9 10z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Visibilidad:</strong><div style="font-size:13px;color:var(--muted)">Baja / Media / Alta (según contaminación lumínica)</div></div></div>
+        <div class="stat"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><div><strong>Duración típica:</strong><div style="font-size:13px;color:var(--muted)">1–3 horas por sesión</div></div></div>
+      </aside>
+    </div>
+
+    <!-- ¿Qué observar? -->
+    <section id="que" class="card" aria-labelledby="que-title">
+      <h2 id="que-title">¿Qué observar en el cielo nocturno?</h2>
+      <p style="color:var(--muted)">Para comenzar, es recomendable priorizar objetos brillantes y fáciles de localizar; a medida que adquiere experiencia, podrá explorar objetos menos evidentes.</p>
+      <div class="grid-3" style="margin-top:14px">
+        <div class="feature">
+          <h3>Planetas visibles</h3>
+          <p>Júpiter y Saturno son excelentes objetivos para principiantes: presentan rasgos visibles con binoculares y pequeños telescopios.</p>
+        </div>
+        <div class="feature">
+          <h3>La Luna</h3>
+          <p>La superficie lunar ofrece contraste y detalles en fases crecientes y menguantes; evite observarla en fase llena si desea ver cráteres con detalle.</p>
+        </div>
+        <div class="feature">
+          <h3>Estrellas y constelaciones</h3>
+          <p>Identificar constelaciones guía su orientación en el cielo; aprenda unas pocas (Orión, Casiopea, Cruz del Sur) y luego amplíe su mapa mental.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Equipo -->
+    <section id="equipo" class="card" aria-labelledby="equipo-title">
+      <h2 id="equipo-title">Equipo recomendado</h2>
+      <p style="color:var(--muted)">No es necesario invertir grandes sumas al inicio; una planificación inteligente y equipo básico rinde mucho.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div style="flex:1;min-width:220px" class="tile">
+          <h4>Binoculares (8x42)</h4>
+          <p>Portátiles, fáciles de usar y muy útiles para localizar objetos amplios como cúmulos estelares.</p>
+        </div>
+        <div style="flex:1;min-width:220px" class="tile">
+          <h4>Telescopio (dobsoniano pequeño)</h4>
+          <p>Buena relación calidad-precio para observar planetas y objetos del cielo profundo.</p>
+        </div>
+        <div style="flex:1;min-width:220px" class="tile">
+          <h4>Aplicación de mapas estelares</h4>
+          <p>Utilice una aplicación que muestre el cielo en tiempo real para facilitar la localización y planificación.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist -->
+    <section class="card" aria-labelledby="prep-title">
+      <h2 id="prep-title">Lista de verificación antes de salir</h2>
+      <div class="checklist" style="margin-top:12px">
+        <div class="check"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Llevar ropa adecuada</strong><div style="color:var(--muted);font-size:13px">Abrigo, gorro y calzado cómodo.</div></div></div>
+
+        <div class="check"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v6" stroke="#7dd3fc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><strong>Linterna con filtro rojo</strong><div style="color:var(--muted);font-size:13px">Preserva la visión nocturna.</div></div></div>
+
+        <div class="check"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18" stroke="#7dd3fc" stroke-width="1.6" stroke-linecap="round"/></svg><div><strong>Comprobar pronóstico</strong><div style="color:var(--muted);font-size:13px">Priorice noches despejadas y baja humedad.</div></div></div>
+      </div>
+    </section>
+
+    <!-- Tips -->
+    <section id="tips" class="card" aria-labelledby="tips-title">
+      <h2 id="tips-title">Consejos prácticos</h2>
+      <ol style="color:var(--muted);line-height:1.6;margin-top:10px">
+        <li><strong>Deje que sus ojos se adapten:</strong> espere 20–30 minutos en la oscuridad para lograr la visión más sensible.</li>
+        <li><strong>Evite la contaminación lumínica:</strong> aléjese de luces urbanas; los parajes rurales suelen ofrecer vista superior.</li>
+        <li><strong>Documente sus observaciones:</strong> anote fecha, hora, ubicación y lo observado; le ayudará a comparar y aprender.</li>
+        <li><strong>Aprenda las estrellas guía:</strong> localice un par de constelaciones para orientarse rápidamente.</li>
+      </ol>
+    </section>
+
+    <!-- Gallery -->
+    <section class="card" aria-labelledby="gal-title">
+      <h2 id="gal-title">Galería conceptual</h2>
+      <div class="gallery" style="margin-top:12px">
+        <div class="tile" aria-hidden="true">
+          <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="xMidYMid meet"><rect width="200" height="60" rx="8" fill="rgba(255,255,255,0.02)"/><g fill="none" stroke="rgba(125,211,252,0.18)"><path d="M10 40c20-20 40-20 60-10 20 10 40 10 60 0" stroke-width="0.8"/></g><text x="12" y="36" fill="#cfeefe" font-size="12">Mapa estelar (concepto)</text></svg>
+          <h4>Mapa estelar</h4>
+          <p>Herramienta esencial para planificar observaciones.</p>
+        </div>
+
+        <div class="tile" aria-hidden="true">
+          <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="xMidYMid meet"><rect width="200" height="60" rx="8" fill="rgba(255,255,255,0.02)"/><g fill="none" stroke="rgba(139,92,246,0.12)"><circle cx="40" cy="30" r="10"/></g><text x="12" y="36" fill="#cfc0ff" font-size="12">Telescopio (esquema)</text></svg>
+          <h4>Telescopio</h4>
+          <p>Elija el tipo según sus intereses (planetas vs. cielo profundo).</p>
+        </div>
+
+        <div class="tile" aria-hidden="true">
+          <svg width="100%" height="60" viewBox="0 0 200 60" preserveAspectRatio="xMidYMid meet"><rect width="200" height="60" rx="8" fill="rgba(255,255,255,0.02)"/><g fill="none" stroke="rgba(125,211,252,0.14)"><path d="M20 40c10-18 30-18 60-10 20 6 40 6 60 0" stroke-width="0.6"/></g><text x="12" y="36" fill="#cfeefe" font-size="12">Sesión nocturna</text></svg>
+          <h4>Sesión nocturna</h4>
+          <p>Organice salida con antelación y comparta ubicación con un acompañante por seguridad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contacto" class="card" aria-labelledby="contacto-title">
+      <h2 id="contacto-title">Contacto y recursos</h2>
+      <p style="color:var(--muted)">Si desea profundizar, considere unirse a un club de astronomía local o consultar recursos en línea y bibliografía especializada.</p>
+
+      <!-- Simple contact form (no backend) -->
+      <form onsubmit="alert('Formulario simulado: no se envía información.');return false;" style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <input type="text" name="nombre" placeholder="Nombre" aria-label="Nombre" style="flex:1;min-width:180px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--fg)">
+        <input type="email" name="email" placeholder="Correo electrónico" aria-label="Correo electrónico" style="flex:1;min-width:180px;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--fg)">
+        <textarea name="mensaje" placeholder="Mensaje breve" aria-label="Mensaje" style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--fg);min-height:80px"></textarea>
+        <div style="display:flex;gap:10px">
+          <button class="btn" type="submit">Enviar (simulado)</button>
+          <a class="btn ghost" href="mailto:info@nochedestrellas.example?subject=Consulta%20Observaci%C3%B3n" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none">Contactar por correo</a>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> Noche de Estrellas — Guía breve</div>
+      <div style="color:var(--muted)">Diseñado para aprendizaje autodidacta • Contenido orientativo</div>
+    </footer>
+  </div>
+
+  <script>
+    // Inserta fecha y año actuales de manera local
+    (function(){
+      const d = new Date();
+      const opts = { year: 'numeric', month: 'long', day: 'numeric', hour:'2-digit', minute:'2-digit' };
+      document.getElementById('currentDate').textContent = 'Fecha: ' + d.toLocaleString(undefined, opts);
+      document.getElementById('year').textContent = d.getFullYear();
+    })();
+
+    // Añade comportamiento de navegación suave para enlaces internos (accesible)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); target.focus({preventScroll:true}); }
+      });
+    });
+
+    // Mejora: detectar si el usuario está en móvil para ajustar avisos (solo informativo)
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+      // No realizar cambios invasivos; solo registro en consola para desarrollador
+      console.log('Usuario en dispositivo móvil: interfaz adaptada.');
+    }
+  </script>
+</body>
+</html>
