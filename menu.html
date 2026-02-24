@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Columpio - Menú</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .menu-section {
+            padding: 30px;
+            border-bottom: 3px solid #f093fb;
+        }
+
+        .menu-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #f5576c;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .menu-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: #f5576c;
+        }
+
+        .item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .item-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            font-size: 1.1em;
+            color: #f5576c;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .add-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .add-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carrito-section {
+            background: #f5f7fa;
+            padding: 30px;
+            border-top: 3px solid #f093fb;
+        }
+
+        .carrito-title {
+            font-size: 1.5em;
+            color: #f5576c;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .carrito-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .carrito-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #f093fb;
+        }
+
+        .carrito-item-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carrito-item-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .carrito-item-price {
+            color: #f5576c;
+            font-weight: bold;
+        }
+
+        .remove-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #ff5252;
+            transform: scale(1.1);
+        }
+
+        .total-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #f093fb;
+            margin-bottom: 20px;
+        }
+
+        .total-label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .total-amount {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #f5576c;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .checkout-btn:active {
+            transform: scale(0.98);
+        }
+
+        .empty-carrito {
+            text-align: center;
+            color: #999;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .menu-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .item-info {
+                width: 100%;
+            }
+
+            .add-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎪 El Columpio</h1>
+            <p>¡Deliciosa comida colombiana!</p>
+        </div>
+
+        <!-- SECCIÓN DE COMIDA -->
+        <div class="menu-section">
+            <div class="section-title">🍽️ Comidas</div>
+            <div class="menu-items" id="comidas"></div>
+        </div>
+
+        <!-- SECCIÓN DE BEBIDAS -->
+        <div class="menu-section">
+            <div class="section-title">🥤 Bebidas</div>
+            <div class="menu-items" id="bebidas"></div>
+        </div>
+
+        <!-- CARRITO -->
+        <div class="carrito-section">
+            <div class="carrito-title">🛒 Tu Pedido</div>
+            <div class="carrito-items" id="carrito">
+                <div class="empty-carrito">El carrito está vacío</div>
+            </div>
+            <div class="total-section">
+                <div class="total-label">Total:</div>
+                <div class="total-amount" id="total">$0 COP</div>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn" onclick="finalizarPedido()">Confirmar Pedido</button>
+        </div>
+    </div>
+
+    <script>
+        // Array de datos del menú
+        const menuData = {
+            comidas: [
+                { id: 1, nombre: "Pasta a la Boloñesa", precio: 32500, tipo: "comida" },
+                { id: 2, nombre: "Rodizio de Res", precio: 55000, tipo: "comida" },
+                { id: 3, nombre: "Pasta Fettuchina", precio: 35000, tipo: "comida" },
+                { id: 4, nombre: "Carne al Barril", precio: 48000, tipo: "comida" }
+            ],
+            bebidas: [
+                { id: 5, nombre: "Limonada de Coco", precio: 19000, tipo: "bebida" },
+                { id: 6, nombre: "Limonada Cerezada", precio: 17000, tipo: "bebida" },
+                { id: 7, nombre: "Malteado de Oreo", precio: 23000, tipo: "bebida" },
+                { id: 8, nombre: "Malteada de Café", precio: 20500, tipo: "bebida" }
+            ]
+        };
+
+        let carrito = [];
+
+        // Función para generar precio aleatorio (ALTERNATIVA)
+        function generarPrecioAleatorio(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Función para renderizar el menú
+        function renderizarMenu() {
+            const comidasContainer = document.getElementById("comidas");
+            const bebidasContainer = document.getElementById("bebidas");
+
+            // Renderizar comidas
+            menuData.comidas.forEach(item => {
+                const itemDiv = document.createElement("div");
+                itemDiv.className = "menu-item";
+                itemDiv.innerHTML = `
+                    <div class="item-info">
+                        <div class="item-name">${item.nombre}</div>
+                        <div class="item-price">$${item.precio.toLocaleString()} COP</div>
+                    </div>
+                    <button class="add-btn" onclick="agregarAlCarrito(${item.id})">Agregar</button>
+                `;
+                comidasContainer.appendChild(itemDiv);
+            });
+
+            // Renderizar bebidas
+            menuData.bebidas.forEach(item => {
+                const itemDiv = document.createElement("div");
+                itemDiv.className = "menu-item";
+                itemDiv.innerHTML = `
+                    <div class="item-info">
+                        <div class="item-name">${item.nombre}</div>
+                        <div class="item-price">$${item.precio.toLocaleString()} COP</div>
+                    </div>
+                    <button class="add-btn" onclick="agregarAlCarrito(${item.id})">Agregar</button>
+                `;
+                bebidasContainer.appendChild(itemDiv);
+            });
+        }
+
+        // Función para obtener el item por ID usando SWITCH como protagonista
+        function obtenerItem(id) {
+            let item = null;
+
+            switch (id) {
+                case 1:
+                    item = menuData.comidas[0];
+                    break;
+                case 2:
+                    item = menuData.comidas[1];
+                    break;
+                case 3:
+                    item = menuData.comidas[2];
+                    break;
+                case 4:
+                    item = menuData.comidas[3];
+                    break;
+                case 5:
+                    item = menuData.bebidas[0];
+                    break;
+                case 6:
+                    item = menuData.bebidas[1];
+                    break;
+                case 7:
+                    item = menuData.bebidas[2];
+                    break;
+                case 8:
+                    item = menuData.bebidas[3];
+                    break;
+                default:
+                    console.error("Producto no encontrado");
+                    break;
+            }
+
+            return item;
+        }
+
+        // Función para agregar al carrito
+        function agregarAlCarrito(id) {
+            const item = obtenerItem(id);
+
+            if (item) {
+                carrito.push({
+                    id: item.id,
+                    nombre: item.nombre,
+                    precio: item.precio,
+                    timestamp: Date.now()
+                });
+
+                actualizarCarrito();
+                animarAgreagado();
+            }
+        }
+
+        // Función para actualizar la visualización del carrito
+        function actualizarCarrito() {
+            const carritoContainer = document.getElementById("carrito");
+            const totalContainer = document.getElementById("total");
+
+            if (carrito.length === 0) {
+                carritoContainer.innerHTML = '<div class="empty-carrito">El carrito está vacío</div>';
+                totalContainer.textContent = "$0 COP";
+                return;
+            }
+
+            carritoContainer.innerHTML = "";
+
+            carrito.forEach((item, index) => {
+                const carritoItemDiv = document.createElement("div");
+                carritoItemDiv.className = "carrito-item";
+                carritoItemDiv.innerHTML = `
+                    <div class="carrito-item-info">
+                        <div class="carrito-item-name">${item.nombre}</div>
+                        <div class="carrito-item-price">$${item.precio.toLocaleString()} COP</div>
+                    </div>
+                    <button class="remove-btn" onclick="removerDelCarrito(${index})">✕</button>
+                `;
+                carritoContainer.appendChild(carritoItemDiv);
+            });
+
+            // Calcular y mostrar total
+            const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+            totalContainer.textContent = `$${total.toLocaleString()} COP`;
+        }
+
+        // Función para remover del carrito
+        function removerDelCarrito(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        // Función para finalizar pedido
+        function finalizarPedido() {
+            if (carrito.length === 0) {
+                alert("❌ El carrito está vacío. ¡Agrega algo delicioso!");
+                return;
+            }
+
+            const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+            const resumen = carrito.map(item => `${item.nombre} - $${item.precio.toLocaleString()} COP`).join("\n");
+
+            alert(`✅ ¡Pedido Confirmado!\n\n${resumen}\n\nTOTAL: $${total.toLocaleString()} COP\n\n¡Gracias por tu compra en El Columpio!`);
+
+            carrito = [];
+            actualizarCarrito();
+        }
+
+        // Animación al agregar
+        function animarAgreagado() {
+            const checkoutBtn = document.getElementById("checkoutBtn");
+            checkoutBtn.style.transform = "scale(1.05)";
+            setTimeout(() => {
+                checkoutBtn.style.transform = "scale(1)";
+            }, 200);
+        }
+
+        // Inicializar menú al cargar la página
+        window.addEventListener("DOMContentLoaded", renderizarMenu);
+    </script>
+</body>
+</html>
